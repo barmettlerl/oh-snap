@@ -5,6 +5,9 @@ use std::{
     sync::Arc,
 };
 
+use serde::{Serialize, Deserialize};
+
+#[derive(Serialize, Deserialize)]
 pub struct Snap<T> {
     buf: Arc<Vec<T>>,
     range: Range<usize>,
