@@ -180,6 +180,34 @@ impl<T> DerefMut for Snap<T> {
     }
 }
 
+impl<T> Clone for Snap<T> {
+    fn clone(&self) -> Self {
+        Snap {
+            buf: self.buf.clone(),
+            range: self.range.clone(),
+        }
+    }
+}
+
+impl<T> Display for Snap<T>
+where
+    T: Display,
+{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "[")?;
+
+        for (i, item) in self.iter().enumerate() {
+            if i > 0 {
+                write!(f, ", ")?;
+            }
+
+            write!(f, "{}", item)?;
+        }
+
+        write!(f, "]")
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
