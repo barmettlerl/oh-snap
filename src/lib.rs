@@ -2,12 +2,12 @@ use std::{
     ops::{Deref, DerefMut, Index, IndexMut, Range},
     slice,
     slice::SliceIndex,
-    sync::Arc,
+    sync::Arc, fmt::Display,
 };
 
 use serde::{Serialize, Deserialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Snap<T> {
     buf: Arc<Vec<T>>,
     range: Range<usize>,
